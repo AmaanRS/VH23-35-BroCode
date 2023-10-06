@@ -1,109 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthWell Login Form</title>
-    <link rel="stylesheet" type="css" href="../static/style.css" />
-    <!-- Unicons -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-</head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>
+        <h2>Doctor Details</h2>
+    </header>
+      <form action="#" class="form">
 
-<body>
-    <!-- Doctor Details Form -->
-    <div class="form signup_form">
-        <form action="#">
-            <h2>Doctor Details</h2>
+        <div class="input-box">
+            <label>Name</label>
+            <input type="text" placeholder="Enter your Name" required />
+          </div>
 
-            <div class="input_box">
-                <input type="username" placeholder="Enter your Name" required />
-                <i class="uil uil-text-alt email"></i>
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="text" placeholder="Enter your Email Address" required />
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>Contact Number</label>
+            <input type="number" placeholder="Enter your Contact Number" required />
+          </div>
+
+          <div class="input-box address">
+            <label>Date of Birth</label>
+            <input type="date" placeholder="Enter your Date of Birth" required />
+        </div>
+        </div>
+
+        <div class="gender-box">
+          <h3>Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="check-male" name="gender" checked />
+              <label for="check-male">Male</label>
             </div>
-            <div class="input_box">
-                <input type="gender" placeholder="Enter your Gender" required />
-                <i class="uil uil-envelope-alt email"></i>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" />
+              <label for="check-female">Female</label>
             </div>
-            <div class="input_box">
-                <input type="date_of_birth" placeholder="Enter your Date Of Birth" required />
-                <i class="uil uil-envelope-alt email"></i>
+            <div class="gender">
+              <input type="radio" id="check-other" name="gender" />
+              <label for="check-other">Prefer not to say</label>
             </div>
-            <div class="input_box">
-                <input type="address" placeholder="Enter your Address" required />
-                <i class="uil uil-envelope-alt email"></i>
+          </div>
+        </div>
+        <div class="input-box address">
+          <label>Address</label>
+          <input type="text" placeholder="Enter your Address" required />
+        </div>
+
+        <div class="column">
+        <div class="input-box address">
+            <label>Department</label>
+            <input type="text" placeholder="Enter your Department" required />
+        </div>
+
+        <div class="input-box address">
+            <label>Practice Years</label>
+            <input type="text" placeholder="Enter your Practice Years" required />
+        </div>
+        </div>
+
+        <div class="column">
+            <div class="input-box address">
+                <label>Expertise</label>
+                <input type="text" placeholder="Enter your Expertise " required />
             </div>
-            <div class="input_box">
-                <input type="blood_group" placeholder="Enter your Blood Group" required />
-                <i class="uil uil-envelope-alt email"></i>
+    
+            <div class="input-box address">
+                <label>Education</label>
+                <input type="text" placeholder="Enter your Education" required />
             </div>
-            <div class="input_box">
-                <input type="contact_number" placeholder="Enter your Contact Number" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="aadhar_card_number" placeholder="Enter your Aadhar Card Number" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="aadhar_card_photo" placeholder="Enter your Aadhar Card Photo" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="pan_card_number" placeholder="Enter your PAN Card Number" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="pan_card_photo" placeholder="Enter your PAN Card Photo" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="self_photo" placeholder="Enter your Self Photo" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="department" placeholder="Enter your Department" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="expertise" placeholder="Enter your Expertise" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="practice" placeholder="Enter your Practice" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="education" placeholder="Enter your Education" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="languages" placeholder="Enter your Preferable Languages" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="email" placeholder="Enter your Email" required />
-                <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-                <input type="password" placeholder="Create Password" required />
-                <i class="uil uil-lock password"></i>
-                <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-            <div class="input_box">
-                <input type="password" placeholder="Confirm Password" required />
-                <i class="uil uil-lock password"></i>
-                <i class="uil uil-eye-slash pw_hide"></i>
             </div>
 
-            <button class="button">Signup Now</button>
+        <div class="column">
+          <div class="input-box">
+            <label>Aadhar Card Number</label>
+            <input type="number" placeholder="Enter your Aadhar Card Number" required />
+          </div>
 
-            <div class="login_signup">
-             Already have an account? <a href="#" id="login">Login</a>
+          <div class="input-box">
+            <label>Aadhar Card Photo</label>
+            <input type="file" placeholder="Enter your Aadhar Card Photo" required />
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>PAN Card Number</label>
+            <input type="number" placeholder="Enter your PAN Card Number" required />
+          </div>
+
+          <div class="input-box">
+            <label>PAN Card Photo</label>
+            <input type="file" placeholder="Enter your PAN Card Photo" required />
+          </div>
+        </div>
+
+        <div class="column">
+        <div class="input-box">
+          <label>Photo</label>
+          <input type="file" placeholder="Enter your self Photo" required />
+        </div>
+
+        <div class="input-box">
+            <label>Language</label>
+            <input type="text" placeholder="Enter your Preferable Languages" required />
+        </div>
+        </div>
+
+          <div class="column">
+            <div class="input-box">
+              <label>Password</label>
+              <input type="number" placeholder="Create Password" required />
             </div>
-        </form>
-    </div>
-
-    <script src="../static/script.js"></script>
-</body>
+            <div class="input-box">
+                <label>Confirm Password</label>
+                <input type="number" placeholder="Confirm Password" required />
+              </div>
+        </div>
+        <button>Submit</button>
+      </form>
+    </section>
+  </body>
 </html>

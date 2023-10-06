@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         date_of_birth: {
-            type: Number,
+            type: String,
             required: true,
         },
         gender: {

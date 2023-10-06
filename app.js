@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const connectDB = require("./db/connect")
 const router = require("./Routes/Router")
+// const isSignedIn = require("./Middlewares/middlewares")
 const path = require("path")
 require("dotenv").config()
 
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
+// app.use(isSignedIn)
 
 
 //Serve html templates
@@ -24,7 +26,7 @@ app.set('views', path.join(__dirname, 'public/Templates'));
 app.use(express.static(path.join(__dirname, '/public')));
 
 //Routes
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render("login")
 })
 
