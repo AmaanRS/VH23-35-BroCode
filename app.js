@@ -1,7 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const connectDB = require("./db/connect")
-const routes = require("./Routes/Router")
+const router = require("./Routes/Router")
 const path = require("path")
 require("dotenv").config()
 
@@ -20,13 +20,15 @@ app.use(express.urlencoded({extended:true}))
 //Serve html templates
 app.set('views', path.join(__dirname, 'public/Templates'));
 
+// Serve static files (e.g., CSS, images)
+app.use(express.static(path.join(__dirname, '/public')));
 
 //Routes
 app.get("/home",(req,res)=>{
-    res.render("home")
+    res.render("login")
 })
 
-app.use("/",routes)
+app.use("/",router)
 
 
 //Listening to port
@@ -34,7 +36,6 @@ const start = async ()=>{
     try {
         await connectDB(process.env.MONGO_URI,"Databse connected")
         app.listen(process.env.PORT,console.log(`Listening to port ${process.env.PORT}`))
-        console.log(__dirname)
     } catch (error) {
         console.log(error)
     }
