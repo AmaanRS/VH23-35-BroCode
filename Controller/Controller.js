@@ -8,7 +8,6 @@ const SignUpUser = async (req, res) => {
         let { username, address, age, contact_number, aadhar_card_number, pan_card_number, blood_group, medical_history, gender, email, password,date_of_birth } = req.body
 
         let {aadhar_card_photo, pan_card_photo,self_photo} = req.files
-        let list_of_files = {aadhar_card_photo, pan_card_photo,self_photo}
         let existinguser = await user_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
@@ -27,11 +26,9 @@ const SignUpUser = async (req, res) => {
         }
         let calc_age = await agefun1(birthdate);
 
-        // for(let i=0;i<3;i++){
-        //     var base64_imgg = imgg.data.toString('base64')
-        //     base64_imgg = "data:image/png;base64,"+base64_imgg
-        //     files.create({file:base64_imgg}).then(console.log("File inserted"))
-        // }
+        aadhar_card_photo = "data:image/png;base64,"+aadhar_card_photo.data.toString('base64')
+        pan_card_photo = "data:image/png;base64,"+pan_card_photo.data.toString('base64')
+        self_photo = "data:image/png;base64,"+self_photo.data.toString('base64')
 
 
         let hashedPassword = await bcrypt.hash(password, 10)
@@ -43,6 +40,7 @@ const SignUpUser = async (req, res) => {
             aadhar_card_number: aadhar_card_number, aadhar_card_photo: aadhar_card_photo, pan_card_number: pan_card_number, pan_card_photo: pan_card_photo, self_photo: self_photo, blood_group: blood_group, medical_history: medical_history,
             gender: gender
         })
+
         let token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
         res.status(201).json({ user: result, token: token })
     } catch (error) {
@@ -75,8 +73,9 @@ const LoginUser = async (req, res) => {
 }
 const SignUpDoctor = async (req, res) => {
     try {
-        let { username, address, age, contact_number, aadhar_card_number, aadhar_card_photo, pan_card_photo, pan_card_number, self_photo, gender, email, password,date_of_birth,department,expertise,practice,languages,education} = req.body
+        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password,date_of_birth,department,expertise,practice,languages,education} = req.body
 
+        let {aadhar_card_photo, pan_card_photo, self_photo,} = req.files
         const existinguser = await doctor_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
@@ -93,6 +92,12 @@ const SignUpDoctor = async (req, res) => {
             return age;
         }
         const calc_age = await agefun2(birthdate);
+
+        aadhar_card_photo = "data:image/png;base64,"+aadhar_card_photo.data.toString('base64')
+        pan_card_photo = "data:image/png;base64,"+pan_card_photo.data.toString('base64')
+        self_photo = "data:image/png;base64,"+self_photo.data.toString('base64')
+
+
         const hashedPassword = await bcrypt.hash(password, 10)
         const result = await doctor_model.create({
             email: email,
