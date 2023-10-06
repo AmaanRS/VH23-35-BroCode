@@ -3,8 +3,10 @@ const cors = require("cors")
 const connectDB = require("./db/connect")
 const router = require("./Routes/Router")
 // const isSignedIn = require("./Middlewares/middlewares")
+const fileUpload = require("express-fileupload")
 const path = require("path")
 require("dotenv").config()
+
 
 //Initiliaze express app
 const app = express()
@@ -16,6 +18,7 @@ app.set('view engine', 'ejs');
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
+app.use(fileUpload())
 // app.use(isSignedIn)
 
 

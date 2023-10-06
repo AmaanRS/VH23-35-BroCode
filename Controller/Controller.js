@@ -1,10 +1,14 @@
 const user_model  = require("../Model/user_model.js")
 const  doctor_model = require("../Model/doctor_model.js")
 const bcrypt = require("bcrypt")
+const fileUpload = require("express-fileupload")
 const jwt = require("jsonwebtoken")
 const SignUpUser = async (req, res) => {
     try {
-        let { username, address, age, contact_number, aadhar_card_number, aadhar_card_photo, pan_card_photo, pan_card_number, self_photo, blood_group, medical_history, gender, email, password,date_of_birth } = req.body
+        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, blood_group, medical_history, gender, email, password,date_of_birth } = req.body
+
+        let {aadhar_card_photo, pan_card_photo,self_photo} = req.files
+        let list_of_files = {aadhar_card_photo, pan_card_photo,self_photo}
         let existinguser = await user_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
@@ -22,6 +26,14 @@ const SignUpUser = async (req, res) => {
             return age;
         }
         let calc_age = await agefun1(birthdate);
+
+        // for(let i=0;i<3;i++){
+        //     var base64_imgg = imgg.data.toString('base64')
+        //     base64_imgg = "data:image/png;base64,"+base64_imgg
+        //     files.create({file:base64_imgg}).then(console.log("File inserted"))
+        // }
+
+
         let hashedPassword = await bcrypt.hash(password, 10)
         let result = await user_model.create({
             email: email,
