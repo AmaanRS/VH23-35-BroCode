@@ -74,6 +74,18 @@ const userSchema = new mongoose.Schema(
         contact_number: {
             type: Number,
             required: true
+        },
+        availability: {
+            type: String,
+            required: false
+        },
+        link: {
+            type: String,
+            required: false
+        },
+        qrcode: {
+            type: String,
+            required: false
         }
     },
     { timestamps: true }

@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const {SignUpUser,SignUpDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails,SignUpCenter,CounsellorDetails,SignUpCounsellor,Login} = require("../Controller/Controller")
+const {SignUpUser,SignUpDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails,SignUpCenter,CounsellorDetails,SignUpCounsellor,Login,search_doctor,doctor_status,doctors} = require("../Controller/Controller")
+// const isSignedIn = require("../Middlewares/middlewares")
+
 
 // Auth Logic
 router.route('/SignUpUser').post(SignUpUser)
@@ -17,6 +19,13 @@ router.route('/UserDetails').get(UserDetails)
 router.route('/DoctorDetails').get(DoctorDetails)
 router.route('/CenterDetails').get(CenterDetails)
 router.route('/CounsellorDetails').get(CounsellorDetails)
+
+//Routes on Dashboard
+router.route('/search_doctor').get(search_doctor)
+router.route('/doctor_status').post(doctor_status)
+router.route('/doctor/:id').get(doctors)
+
+
 
 
 module.exports = router

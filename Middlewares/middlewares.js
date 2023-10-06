@@ -16,6 +16,7 @@ const userClaims = {
 const isSignedIn = async (req, res, next) => {
     try {
         let token = req.headers.authorization
+        console.log(token)
         if (token != undefined) {
             let user = await jwt.verify(token, process.env.SECRET_KEY)
             req.userID = user.id
