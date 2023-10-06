@@ -16,14 +16,14 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        age: {
-            type: Number,
-            required: true,
-        },
-        date_of_birth: {
-            type: String,
-            required: true,
-        },
+        // age: {
+        //     type: Number,
+        //     required: true,
+        // },
+        // date_of_birth: {
+        //     type: String,
+        //     required: true,
+        // },
         gender: {
             type: String,
             required: true,
@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         address: {
+            type: String,
+            required: true,
+        },
+        availability: {
             type: String,
             required: true,
         },
@@ -53,15 +57,23 @@ const userSchema = new mongoose.Schema(
             type: String,
             // required: false,
         },
-        blood_group: {
-            type: String,
-            required: true,
-        },
-        medical_history: {
-            type: String,
-            required: false,
-        },
+        // blood_group: {
+        //     type: String,
+        //     required: true,
+        // },
+        // medical_history: {
+        //     type: String,
+        //     required: false,
+        // },
         self_photo: {
+            type: String,
+            // required: true
+        },
+        license_photo: {
+            type: String,
+            // required: true
+        },
+        degree: {
             type: String,
             // required: true
         }
@@ -69,4 +81,4 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("user_model", userSchema)
+module.exports = mongoose.model("counsellor_model", userSchema)

@@ -11,40 +11,40 @@
       <header>
         <h2>Center Details</h2>
     </header>
-      <form action="#" class="form">
+      <form action="/SignUpCenter" class="form" enctype="multipart/form-data" method="post">
         <div class="input-box">
           <label>Center Name</label>
-          <input type="text" placeholder="Enter your Center Name" required />
+          <input type="text" placeholder="Enter your Center Name" required name="username"/>
         </div>
 
         <div class="input-box">
             <label>Center Guide Name</label>
-            <input type="text" placeholder="Enter your Center Guide Name" required />
+            <input type="text" placeholder="Enter your Center Guide Name" required name="center_guide_name"/>
           </div>
 
         <div class="input-box">
           <label>Email Address</label>
-          <input type="text" placeholder="Enter email address" required />
+          <input type="email" placeholder="Enter email address" required name="email"/>
         </div>
 
           <div class="input-box">
             <label>Contact Number</label>
-            <input type="number" placeholder="Enter your Contact Number" required />
+            <input type="number" placeholder="Enter your Contact Number" required name="contact_number"/>
           </div>
         </div>
         <div class="input-box address">
           <label>Center Address</label>
-          <input type="text" placeholder="Enter your Center's Address" required />
+          <input type="text" placeholder="Enter your Center's Address" required name="address"/>
         </div>
 
         <div class="column">
             <div class="input-box">
               <label>Password</label>
-              <input type="number" placeholder="Create Password" required />
+              <input type="password" placeholder="Create Password" required name="password"/>
             </div>
             <div class="input-box">
                 <label>Confirm Password</label>
-                <input type="number" placeholder="Confirm Password" required />
+                <input type="password" placeholder="Confirm Password" required name="pass_confirm"/>
               </div>
         </div>
         <button>Submit</button>

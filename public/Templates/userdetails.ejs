@@ -11,27 +11,27 @@
       <header>
         <h2>User Details</h2>
     </header>
-      <form action="#" class="form">
+      <form action="/SignUpUser" class="form" enctype="multipart/form-data" method="post">
 
         <div class="input-box">
             <label>Name</label>
-            <input type="text" placeholder="Enter your Name" required />
+            <input type="text" placeholder="Enter your Name" required name="username"/>
           </div>
 
         <div class="input-box">
           <label>Email Address</label>
-          <input type="text" placeholder="Enter your Email Address" required />
+          <input type="text" placeholder="Enter your Email Address" required name="email"/>
         </div>
 
         <div class="column">
           <div class="input-box">
             <label>Contact Number</label>
-            <input type="number" placeholder="Enter your Contact Number" required />
+            <input type="number" placeholder="Enter your Contact Number" required  name="contact_number"/>
           </div>
 
           <div class="input-box">
             <label>Self Photo</label>
-            <input type="file" placeholder="Enter your self Photo" required />
+            <input type="file" placeholder="Enter your self Photo" required name="self_photo"/>
           </div>
           
         </div>
@@ -39,68 +39,68 @@
           <h3>Gender</h3>
           <div class="gender-option">
             <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
+              <input type="radio" value="Male" id="check-male" name="gender" checked />
               <label for="check-male">Male</label>
             </div>
             <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
+              <input type="radio" value="Female" id="check-female" name="gender" />
               <label for="check-female">Female</label>
             </div>
             <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
+              <input type="radio" value="Prefer not to say" id="check-other" name="gender" />
               <label for="check-other">Prefer not to say</label>
             </div>
           </div>
         </div>
         <div class="input-box address">
           <label>Address</label>
-          <input type="text" placeholder="Enter your Address" required />
+          <input type="text" placeholder="Enter your Address" required name="address" />
         </div>
 
         <div class="column">
         <div class="input-box address">
             <label>Date of Birth</label>
-            <input type="date" placeholder="Enter your Date of Birth" required />
+            <input type="text" placeholder="Enter your Date of Birth" required name="date_of_birth"/>
         </div>
 
         <div class="input-box address">
             <label>Blood Group</label>
-            <input type="text" placeholder="Enter your Blood Group" required />
+            <input type="text" placeholder="Enter your Blood Group" required name="blood_group"/>
         </div>
         </div>
 
         <div class="column">
           <div class="input-box">
             <label>Aadhar Card Number</label>
-            <input type="number" placeholder="Enter your Aadhar Card Number" required />
+            <input type="number" placeholder="Enter your Aadhar Card Number" required name="aadhar_card_number"/>
           </div>
 
           <div class="input-box">
             <label>Aadhar Card Photo</label>
-            <input type="file" placeholder="Enter your Aadhar Card Photo" required />
+            <input type="file" placeholder="Enter your Aadhar Card Photo" required name="aadhar_card_photo"/>
           </div>
         </div>
 
         <div class="column">
           <div class="input-box">
             <label>PAN Card Number</label>
-            <input type="number" placeholder="Enter your PAN Card Number" required />
+            <input type="number" placeholder="Enter your PAN Card Number" required name="pan_card_number"/>
           </div>
 
           <div class="input-box">
             <label>PAN Card Photo</label>
-            <input type="file" placeholder="Enter your PAN Card Photo" required />
+            <input type="file" placeholder="Enter your PAN Card Photo" required name="pan_card_photo"/>
           </div>
         </div>
 
         <div class="column">
             <div class="input-box">
               <label>Password</label>
-              <input type="number" placeholder="Create Password" required />
+              <input type="password" placeholder="Create Password" required name="password"/>
             </div>
             <div class="input-box">
                 <label>Confirm Password</label>
-                <input type="number" placeholder="Confirm Password" required />
+                <input type="password" placeholder="Confirm Password" required name="pass_confirm"/>
               </div>
         </div>
         <button>Submit</button>

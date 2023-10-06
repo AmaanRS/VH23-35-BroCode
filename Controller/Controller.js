@@ -1,30 +1,38 @@
 const user_model  = require("../Model/user_model.js")
 const  doctor_model = require("../Model/doctor_model.js")
+const  center_model = require("../Model/center_model.js")
+const  counsellor_model = require("../Model/counsellor_model.js")
 const bcrypt = require("bcrypt")
-const fileUpload = require("express-fileupload")
 const jwt = require("jsonwebtoken")
+
+
 const SignUpUser = async (req, res) => {
     try {
-        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, blood_group, medical_history, gender, email, password,date_of_birth } = req.body
-
+        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, blood_group, medical_history, gender, email, password,date_of_birth,pass_confirm} = req.body
         let {aadhar_card_photo, pan_card_photo,self_photo} = req.files
         let existinguser = await user_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
         }
-        // date_of_birth = "29/12/2003"
-        let dob_splited = date_of_birth.split("-")
+        if(password != pass_confirm){
+            return res.status(400).json({ message: "Password and confirm password is not same" })
+        }
+        // date_of_birth = "29-12-2003"
+        // console.log(typeof(date_of_birth))
+        let dob_splited = date_of_birth.split("/")
         let birthdate = new Date(dob_splited[2],dob_splited[1] - 1, dob_splited[0]);
+        // console.log(birthdate)
         // const birthdate = new Date(2004 yyyy, 2 - 1 mm, 2 dd);
         function agefun1(birthdate) {
             let today = new Date();
             let age = today.getFullYear() - birthdate.getFullYear() -
                 (today.getMonth() < birthdate.getMonth() ||
                     (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate()));
-                    console.log("inside fuct")
+                    // console.log("inside fuct")
             return age;
         }
         let calc_age = await agefun1(birthdate);
+        // console.log(calc_age)
 
         aadhar_card_photo = "data:image/png;base64,"+aadhar_card_photo.data.toString('base64')
         pan_card_photo = "data:image/png;base64,"+pan_card_photo.data.toString('base64')
@@ -32,6 +40,17 @@ const SignUpUser = async (req, res) => {
 
 
         let hashedPassword = await bcrypt.hash(password, 10)
+        // let result = await user_model.create({
+        //     email: email,
+        //     username: username,
+        //     password: hashedPassword,
+        //     address: address, age: calc_age,date_of_birth:date_of_birth, contact_number: contact_number,
+        //     aadhar_card_number: aadhar_card_number, pan_card_number: pan_card_number,blood_group: blood_group, medical_history: medical_history,
+        //     gender: gender
+        // })
+
+
+
         let result = await user_model.create({
             email: email,
             username: username,
@@ -73,15 +92,17 @@ const LoginUser = async (req, res) => {
 }
 const SignUpDoctor = async (req, res) => {
     try {
-        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password,date_of_birth,department,expertise,practice,languages,education} = req.body
+        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password,date_of_birth,department,expertise,practice,languages,education,pass_confirm} = req.body
 
         let {aadhar_card_photo, pan_card_photo, self_photo,} = req.files
         const existinguser = await doctor_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
-        }   
-
-        let dob_splited = date_of_birth.split("-")
+        }
+        if(password != pass_confirm){
+            return res.status(400).json({ message: "Password and confirm password is not same" })
+        }
+        let dob_splited = date_of_birth.split("/")
         let birthdate = new  Date(dob_splited[2],dob_splited[1] - 1, dob_splited[0]);
         // const birthdate = new Date(2004 yyyy, 2 - 1 mm, 2 dd);
         function agefun2(birthdate) {
@@ -105,7 +126,7 @@ const SignUpDoctor = async (req, res) => {
             password: hashedPassword,
             address: address, age: calc_age, contact_number: contact_number,
             aadhar_card_number: aadhar_card_number, aadhar_card_photo: aadhar_card_photo, pan_card_number: pan_card_number, pan_card_photo: pan_card_photo, self_photo: self_photo,date_of_birth:date_of_birth,department:department,expertise:expertise,practice:practice,
-            languages:languages,education:education
+            languages:languages,education:education,gender:gender
         })
         const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
         res.status(201).json({ user: result, token: token })
@@ -134,6 +155,111 @@ const LoginDoctor = async (req, res) => {
 
 }
 
+const SignUpCenter = async(req,res)=>{
+    try {
+        let { username, address, center_guide_name, contact_number, email, password ,pass_confirm} = req.body
+
+        const existinguser = await center_model.findOne({ email: email })
+        if (existinguser) {
+            return res.status(400).json({ message: "User already exist" })
+        }
+        if(password != pass_confirm){
+            return res.status(400).json({ message: "Password and confirm password is not same" })
+        }
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const result = await center_model.create({
+            email: email,
+            username: username,
+            password: hashedPassword,
+            address: address, contact_number: contact_number,
+            center_guide_name:center_guide_name
+        })
+        const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        res.status(201).json({ user: result, token: token })
+    } catch (error) {
+        res.status(500).json({ message: "something went wrong in SignUpCenterController", msg: error.message })
+    }
+
+}
+const LoginCenter = async(req,res)=>{
+    const { email, password } = req.body
+    try {
+        const existinguser = await center_model.findOne({ email: email })
+        if (!existinguser) {
+            return res.status(400).json({ message: "User not found" })
+        }
+        const matchPassword = await bcrypt.compare(password, existinguser.password)
+        if (!matchPassword) {
+            return res.status(400).json({ message: "Invalid credentials" })
+        }
+        const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+        res.status(201).json({ user: existinguser, token: token })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "something went wrong in LoginCenterController", message: err.message })
+    }
+}
+
+
+const SignUpCounsellor = async(req,res)=>{
+    try {
+        let { username, address, gender, contact_number, email, password ,pass_confirm,availability,aadhar_card_number,pan_card_number,degree} = req.body
+
+        let {aadhar_card_photo, pan_card_photo, self_photo,license_photo} = req.files
+        const existinguser = await counsellor_model.findOne({ email: email })
+        if (existinguser) {
+            return res.status(400).json({ message: "User already exist" })
+        }
+        if(password != pass_confirm){
+            return res.status(400).json({ message: "Password and confirm password is not same" })
+        }
+
+        aadhar_card_photo = "data:image/png;base64,"+aadhar_card_photo.data.toString('base64')
+        pan_card_photo = "data:image/png;base64,"+pan_card_photo.data.toString('base64')
+        self_photo = "data:image/png;base64,"+self_photo.data.toString('base64')
+        license_photo = "data:image/png;base64,"+license_photo.data.toString('base64')
+
+
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const result = await counsellor_model.create({
+            email: email,
+            username: username,
+            password: hashedPassword,
+            address: address, contact_number: contact_number,
+            gender:gender,availability:availability,aadhar_card_number:aadhar_card_number,pan_card_number:pan_card_number,degree:degree,aadhar_card_photo:aadhar_card_photo,pan_card_photo:pan_card_photo,self_photo:self_photo,license_photo:license_photo
+        })
+        const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        res.status(201).json({ user: result, token: token })
+    } catch (error) {
+        res.status(500).json({ message: "something went wrong in SignUpCounsellorController", msg: error.message })
+    }
+
+}
+const LoginCounsellor = async(req,res)=>{
+    const { email, password } = req.body
+    try {
+        const existinguser = await counsellor_model.findOne({ email: email })
+        if (!existinguser) {
+            return res.status(400).json({ message: "User not found" })
+        }
+        const matchPassword = await bcrypt.compare(password, existinguser.password)
+        if (!matchPassword) {
+            return res.status(400).json({ message: "Invalid credentials" })
+        }
+        const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+        res.status(201).json({ user: existinguser, token: token })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "something went wrong in LoginCounsellorController", message: err.message })
+    }
+}
+
+
+
+
+
+
 const UserDetails = async(req,res)=>{
     res.render("userdetails")
 }
@@ -146,7 +272,11 @@ const CenterDetails = async(req,res)=>{
     res.render("centerdetails")
 }
 
+const CounsellorDetails = async(req,res)=>{
+    res.render("counsellordetails")
+}
+
 
 module.exports = {
-    SignUpUser, LoginUser, SignUpDoctor, LoginDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails
+    SignUpUser, LoginUser, SignUpDoctor, LoginDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails,SignUpCenter,LoginCenter,CounsellorDetails,SignUpCounsellor,LoginCounsellor
 }
