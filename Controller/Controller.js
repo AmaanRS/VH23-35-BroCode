@@ -60,8 +60,9 @@ const SignUpUser = async (req, res) => {
             gender: gender
         })
 
-        let token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: result, token: token })
+        // let token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: result, token: token })
+        res.render("index")
     } catch (error) {
         res.status(500).json({ message: "something went wrong in SignUpUserController", msg: error.message})
     }
@@ -71,25 +72,27 @@ const SignUp = async(req,res)=>{
     res.render("signup")
 }
 
-const LoginUser = async (req, res) => {
-    const { email, password } = req.body
-    try {
-        const existinguser = await user_model.findOne({ email: email })
-        if (!existinguser) {
-            return res.status(400).json({ message: "User not found" })
-        }
-        const matchPassword = await bcrypt.compare(password, existinguser.password)
-        if (!matchPassword) {
-            return res.status(400).json({ message: "Invalid credentials" })
-        }
-        const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: existinguser, token: token })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "something went wrong in LoginUserController", message: err.message })
-    }
+// const LoginUser = async (req, res) => {
+//     const { email, password } = req.body
+//     try {
+//         const existinguser = await user_model.findOne({ email: email })
+//         if (!existinguser) {
+//             return res.status(400).json({ message: "User not found" })
+//         }
+//         const matchPassword = await bcrypt.compare(password, existinguser.password)
+//         if (!matchPassword) {
+//             return res.status(400).json({ message: "Invalid credentials" })
+//         }
+//         const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+//         res.status(201).json({ user: existinguser, token: token })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({ message: "something went wrong in LoginUserController", message: err.message })
+//     }
 
-}
+// }
+
+
 const SignUpDoctor = async (req, res) => {
     try {
         let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password,date_of_birth,department,expertise,practice,languages,education,pass_confirm} = req.body
@@ -128,32 +131,35 @@ const SignUpDoctor = async (req, res) => {
             aadhar_card_number: aadhar_card_number, aadhar_card_photo: aadhar_card_photo, pan_card_number: pan_card_number, pan_card_photo: pan_card_photo, self_photo: self_photo,date_of_birth:date_of_birth,department:department,expertise:expertise,practice:practice,
             languages:languages,education:education,gender:gender
         })
-        const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: result, token: token })
+        // const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: result, token: token })
+        res.render("index")
     } catch (error) {
         res.status(500).json({ message: "something went wrong in SignUpDoctorController", msg: error.message })
     }
 
 }
-const LoginDoctor = async (req, res) => {
-    const { email, password } = req.body
-    try {
-        const existinguser = await doctor_model.findOne({ email: email })
-        if (!existinguser) {
-            return res.status(400).json({ message: "User not found" })
-        }
-        const matchPassword = await bcrypt.compare(password, existinguser.password)
-        if (!matchPassword) {
-            return res.status(400).json({ message: "Invalid credentials" })
-        }
-        const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: existinguser, token: token })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "something went wrong in LoginDoctorController", message: err.message })
-    }
 
-}
+
+// const LoginDoctor = async (req, res) => {
+//     const { email, password } = req.body
+//     try {
+//         const existinguser = await doctor_model.findOne({ email: email })
+//         if (!existinguser) {
+//             return res.status(400).json({ message: "User not found" })
+//         }
+//         const matchPassword = await bcrypt.compare(password, existinguser.password)
+//         if (!matchPassword) {
+//             return res.status(400).json({ message: "Invalid credentials" })
+//         }
+//         const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+//         res.status(201).json({ user: existinguser, token: token })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({ message: "something went wrong in LoginDoctorController", message: err.message })
+//     }
+
+// }
 
 const SignUpCenter = async(req,res)=>{
     try {
@@ -174,31 +180,35 @@ const SignUpCenter = async(req,res)=>{
             address: address, contact_number: contact_number,
             center_guide_name:center_guide_name
         })
-        const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: result, token: token })
+        // const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: result, token: token })
+        res.render("index")
+
     } catch (error) {
         res.status(500).json({ message: "something went wrong in SignUpCenterController", msg: error.message })
     }
 
 }
-const LoginCenter = async(req,res)=>{
-    const { email, password } = req.body
-    try {
-        const existinguser = await center_model.findOne({ email: email })
-        if (!existinguser) {
-            return res.status(400).json({ message: "User not found" })
-        }
-        const matchPassword = await bcrypt.compare(password, existinguser.password)
-        if (!matchPassword) {
-            return res.status(400).json({ message: "Invalid credentials" })
-        }
-        const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: existinguser, token: token })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "something went wrong in LoginCenterController", message: err.message })
-    }
-}
+
+
+// const LoginCenter = async(req,res)=>{
+//     const { email, password } = req.body
+//     try {
+//         const existinguser = await center_model.findOne({ email: email })
+//         if (!existinguser) {
+//             return res.status(400).json({ message: "User not found" })
+//         }
+//         const matchPassword = await bcrypt.compare(password, existinguser.password)
+//         if (!matchPassword) {
+//             return res.status(400).json({ message: "Invalid credentials" })
+//         }
+//         const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+//         res.status(201).json({ user: existinguser, token: token })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({ message: "something went wrong in LoginCenterController", message: err.message })
+//     }
+// }
 
 
 const SignUpCounsellor = async(req,res)=>{
@@ -229,17 +239,33 @@ const SignUpCounsellor = async(req,res)=>{
             address: address, contact_number: contact_number,
             gender:gender,availability:availability,aadhar_card_number:aadhar_card_number,pan_card_number:pan_card_number,degree:degree,aadhar_card_photo:aadhar_card_photo,pan_card_photo:pan_card_photo,self_photo:self_photo,license_photo:license_photo
         })
-        const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: result, token: token })
+        // const token = await jwt.sign({ email: result.email, id: result._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: result, token: token })
+        res.render("index")
+
     } catch (error) {
         res.status(500).json({ message: "something went wrong in SignUpCounsellorController", msg: error.message })
     }
 
 }
-const LoginCounsellor = async(req,res)=>{
-    const { email, password } = req.body
+
+// Implement login of everyone over here
+const Login = async(req,res)=>{
+    const { email, password,identity } = req.body
     try {
-        const existinguser = await counsellor_model.findOne({ email: email })
+        let existinguser
+        if(identity == 'user'){
+            existinguser= await user_model.findOne({ email: email })
+        }else if(identity == 'doctor'){
+            existinguser = await doctor_model.findOne({ email: email })
+        }else if(identity == 'counsellor'){
+            existinguser = await counsellor_model.findOne({ email: email })
+        }else if(identity == 'center'){
+            existinguser= await center_model.findOne({ email: email })
+        }else{
+            return res.status(400).json({ message: "User does not exist" })
+        }
+
         if (!existinguser) {
             return res.status(400).json({ message: "User not found" })
         }
@@ -248,17 +274,13 @@ const LoginCounsellor = async(req,res)=>{
             return res.status(400).json({ message: "Invalid credentials" })
         }
         const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
-        res.status(201).json({ user: existinguser, token: token })
+        // res.status(201).json({ user: existinguser, token: token })
+        res.render("index.ejs",{ user: existinguser, token: token })
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "something went wrong in LoginCounsellorController", message: err.message })
     }
 }
-
-
-
-
-
 
 const UserDetails = async(req,res)=>{
     res.render("userdetails")
@@ -278,5 +300,5 @@ const CounsellorDetails = async(req,res)=>{
 
 
 module.exports = {
-    SignUpUser, LoginUser, SignUpDoctor, LoginDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails,SignUpCenter,LoginCenter,CounsellorDetails,SignUpCounsellor,LoginCounsellor
+    SignUpUser,SignUpDoctor,SignUp,UserDetails,DoctorDetails,CenterDetails,SignUpCenter,CounsellorDetails,SignUpCounsellor,Login
 }
