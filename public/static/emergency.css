@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'e-Ukraine';
+    src: url('fonts/e-UkraineHead-Bold.otf') format('otf');
+    font-weight: 1000;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'e-Ukraine';
+    src: url('fonts/e-UkraineHead-Regular.otf') format('otf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    font-family: 'e-Ukraine';
+    font-weight: 300;
+}
+
+.clear {
+    color: #32cd32;
+}
+
+.alert {
+    color: #de1738;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#status {
+    transition: color, 0.5s;
+    font-family: 'e-Ukraine';
+    font-weight: 1000;
+}
+
+.button {
+    background-color: #dbd9d9;
+    width: 13%;
+    height: 100%;
+    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2.5%;
+    transition: color, 0.5s;
+}
+
+.button:hover {
+    filter: contrast(75%);
+}
+
+#status:hover {
+    filter: contrast(55%);
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 8%;
+}
+
+#main-container {
+    flex-direction: column;
+    background-color: #e6e6e6;
+    width: 40vw;
+    height: 98vh;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#noright {
+    margin-right: 0;
+}
+
+.accordion{
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: rgb(140, 203, 239);
+    border-radius: 10px;
+}
+.accordion__question p{
+    margin: 5px;
+    padding: 0;
+    font-family: Verdana;
+    font-size: 20px;
+}
+.accordion__answer p{
+    margin: 5px;
+    padding: 10px;
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(255, 255, 255);
+    background: rgb(82, 170, 122);
+    border-radius: 10px; 
+}
+.accordion:hover{
+    cursor: pointer;
+}
+.accordion__answer {
+    display: none;
+} 
+.accordion.active .accordion__answer {
+    display: block;
+}

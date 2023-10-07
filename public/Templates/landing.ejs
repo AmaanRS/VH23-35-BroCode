@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link href="../static/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="../static/stylek1.css" rel="stylesheet" />
+    <style>
+      .faq-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropbtn {
+        background-color: #4caf50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: rgb(93, 88, 88);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+
+      .dropdown-content a.active {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .faq-dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .faq-dropdown:hover .dropbtn {
+        background-color: navajowhite;
+      }
+      #Emergency {
+        margin-bottom: 20rem;
+        padding-bottom: 20rem;
+      }
+      #h10 {
+        color: rgb(247, 128, 112);
+      }
+      #btn {
+        justify-content: center;
+        margin-left: 12rem;
+      }
+      #imgs {
+        padding-left: 10rem;
+      }
+      body {
+        background: url("https://image.freepik.com/free-vector/abstract-medical-background-with-icons-symbols-template-with-concept-idea-healthcare-technology-innovation-medicine-health-science-research_120542-570.jpg")
+          center no-repeat;
+      }
+      #title {
+        padding-right: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid sticky-top bg-dark shadow-sm">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-dark py-3 py-lg-0">
+          <a href="" class="navbar-brand">
+            <h1 class="m-0 text-uppercase text-primary">
+              <i class="fa fa-clinic-medical me-2"></i>HealWell
+            </h1>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          ></button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+              <a href="about.html" class="nav-item nav-link">About</a>
+              <a href="service.html" class="nav-item nav-link">Service</a>
+              <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <section id="title" class="gradient-background-dark">
+      <div class="row flex-lg-row-reverse align-items-center g-5 pt-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <form
+            class="p-4 p-md-5 border rounded-3 bg-body-tertiary"
+            action="/Login"
+            method="post"
+          >
+            <i class="uil uil-times form_close"></i>
+            <div class="form login_form">
+              <form action="/Login" method="post">
+                <select name="identity">
+                  <option value="user">Patient</option>
+                  <option value="doctor">Doctor</option>
+                  <option value="counsellor">Counsellor</option>
+                  <option value="center">Center</option>
+                </select>
+                <h2 style="color: rgb(91, 204, 239)">Login</h2>
+
+                <div class="input_box">
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                  <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                  <i class="uil uil-lock password"></i>
+                  <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
+
+                <div class="option_field">
+                  <span class="checkbox">
+                    <input type="checkbox" id="check" />
+                    <label for="check" style="color: aqua">Remember Me</label>
+                  </span>
+                  <a href="#" class="forgot_pw">Forgot Password?</a>
+                </div>
+
+                <button class="button">Login Now</button>
+
+                <div class="login_signup">
+                  Don't have an account?
+                  <a href="/SignUp" id="signup">Signup</a>
+                </div>
+              </form>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <h1 id="h10" class="display-5 fw-bold lh-1 mb-3">
+            Emergency!!!<br />Click Here
+          </h1>
+          <img
+            src="https://c0.wallpaperflare.com/preview/252/268/888/ambulance-rescue-emergency-blue-light.jpg"
+            height="400px"
+            width="500px"
+            style="border-radius: 8rem"
+            id="imgs"
+          />
+
+          <form action="/emergency" method="post">
+            <button type="submit" id="btn" class="btn btn-outline-danger">
+              Emergency
+            </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <p class="col-lg-10 fs-4">
+                    <div class="faq-dropdown">
+                        <button class="dropbtn">FAQs</button>
+                        <div class="dropdown-content">
+                            <a href="#"></a>
+                            <a href="#">What is CSS?</a>
+                            <a href="#">What is JavaScript?</a>
+                        </div>
+                    </div>
+                    </p>
+                </div> -->
+      </div>
+    </section>
+    <div class="container-fluid bg-dark text-light mt-5 py-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h4
+              class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4"
+            >
+              Get In Touch
+            </h4>
+            <p class="mb-4">
+              You can Ask any Query you have By Connecting us Through..
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt text-primary me-3"></i>Mumbai
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope text-primary me-3"></i>HealWell@mail.com
+            </p>
+            <p class="mb-0">
+              <i class="fa fa-phone-alt text-primary me-3"></i>+91 xx
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4
+              class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4"
+            >
+              Quick Links
+            </h4>
+            <div class="d-flex flex-column justify-content-start">
+              <a class="text-light mb-2" href="./about.html"
+                ><i class="fa fa-angle-right me-2"></i>About Us</a
+              >
+              <a class="text-light mb-2" href="./service.html"
+                ><i class="fa fa-angle-right me-2"></i>Our Services</a
+              >
+              <a class="text-light" href="./contact.html"
+                ><i class="fa fa-angle-right me-2"></i>Contact Us</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4
+              class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4"
+            >
+              Popular Links
+            </h4>
+            <div class="d-flex flex-column justify-content-start">
+              <a class="text-light mb-2" href="#"
+                ><i class="fa fa-angle-right me-2"></i>Lab Reports</a
+              >
+              <a class="text-light mb-2" href="#"
+                ><i class="fa fa-angle-right me-2"></i>Buy Medicine</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4
+              class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4"
+            >
+              Leave Your Doubt
+            </h4>
+            <form action="">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control p-3 border-0"
+                  placeholder="Comment Here.."
+                />
+                <button class="btn btn-primary">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid bg-dark text-light border-top border-secondary py-4"
+    >
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-md-0">
+              &copy; <a class="text-primary" href="#">HealWell</a>. All Rights
+              Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
