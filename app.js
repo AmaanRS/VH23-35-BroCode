@@ -1,3 +1,4 @@
+
 const express = require("express")
 const cors = require("cors")
 const connectDB = require("./db/connect")
@@ -7,12 +8,13 @@ const fileUpload = require("express-fileupload")
 const path = require("path")
 require("dotenv").config()
 
-
 //Initiliaze express app
 const app = express()
 
+
 //Template engine
 app.set('view engine', 'ejs');
+
 
 //Middlewares
 app.use(express.json())
@@ -34,7 +36,6 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/",router)
-
 
 //Listening to port
 const start = async ()=>{
