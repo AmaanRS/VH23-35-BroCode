@@ -33,6 +33,9 @@ app.get("/", (req, res) => {
 app.post("/emergency", (req, res) => {
   res.render("emergency");
 });
+app.get("/emergency", (req, res) => {
+  res.render("emergency");
+});
 app.use("/", router);
 
 //Listening to port
