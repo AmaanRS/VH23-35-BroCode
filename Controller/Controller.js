@@ -97,9 +97,9 @@ const SignUp = async (req, res) => {
 
 const SignUpDoctor = async (req, res) => {
     try {
-        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password, date_of_birth, department, expertise, practice, languages, education, pass_confirm } = req.body
+        let { username, address, age, contact_number, aadhar_card_number, pan_card_number, gender, email, password, date_of_birth, department, expertise, practice, languages, education, pass_confirm, degree_certificate_id } = req.body
 
-        let { aadhar_card_photo, pan_card_photo, self_photo, } = req.files
+        let { aadhar_card_photo, pan_card_photo, self_photo, degree_certificate_photo } = req.files
         const existinguser = await doctor_model.findOne({ email: email })
         if (existinguser) {
             return res.status(400).json({ message: "User already exist" })
@@ -123,6 +123,7 @@ const SignUpDoctor = async (req, res) => {
         aadhar_card_photo = "data:image/png;base64," + aadhar_card_photo.data.toString('base64')
         pan_card_photo = "data:image/png;base64," + pan_card_photo.data.toString('base64')
         self_photo = "data:image/png;base64," + self_photo.data.toString('base64')
+        degree_certificate_photo = "data:image/png;base64," + degree_certificate_photo.data.toString('base64')
 
 
         const hashedPassword = await bcrypt.hash(password, 10)
@@ -132,7 +133,7 @@ const SignUpDoctor = async (req, res) => {
             password: hashedPassword,
             address: address, age: calc_age, contact_number: contact_number,
             aadhar_card_number: aadhar_card_number, aadhar_card_photo: aadhar_card_photo, pan_card_number: pan_card_number, pan_card_photo: pan_card_photo, self_photo: self_photo, date_of_birth: date_of_birth, department: department, expertise: expertise, practice: practice,
-            languages: languages, education: education, gender: gender
+            languages: languages, education: education, gender: gender, degree_certificate_photo:degree_certificate_photo, degree_certificate_id:degree_certificate_id
         })
 
         const url =
@@ -268,8 +269,28 @@ const Login = async (req, res) => {
         let existinguser
         if (identity == 'user') {
             existinguser = await user_model.findOne({ email: email })
+            if (!existinguser) {
+                return res.status(400).json({ message: "User not found" })
+            }
+            const matchPassword = await bcrypt.compare(password, existinguser.password)
+            if (!matchPassword) {
+                return res.status(400).json({ message: "Invalid credentials" })
+            }
+            const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: existinguser, token: token })
+        res.render("index.ejs", { user: existinguser, token: token })
         } else if (identity == 'doctor') {
             existinguser = await doctor_model.findOne({ email: email })
+            if (!existinguser) {
+                return res.status(400).json({ message: "User not found" })
+            }
+            const matchPassword = await bcrypt.compare(password, existinguser.password)
+            if (!matchPassword) {
+                return res.status(400).json({ message: "Invalid credentials" })
+            }
+            const token = jwt.sign({ email: existinguser.email, id: existinguser._id }, process.env.SECRET_KEY)
+        // res.status(201).json({ user: existinguser, token: token })
+        res.render("doctor.ejs", { user: existinguser, token: token })
         } else if (identity == 'counsellor') {
             existinguser = await counsellor_model.findOne({ email: email })
         } else if (identity == 'center') {

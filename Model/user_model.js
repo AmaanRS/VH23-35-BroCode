@@ -65,6 +65,20 @@ const userSchema = new mongoose.Schema(
             type: String,
             // required: true
         }
+        ,
+        bp_lower: {
+            type: String,
+            // required: true
+        },
+        bp_higher: {
+            type: String,
+            // required: true
+        }
+        ,
+        date: {
+            type: String,
+            // required: true
+        }
     },
     { timestamps: true }
 );

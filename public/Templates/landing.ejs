@@ -85,6 +85,9 @@
     </style>
   </head>
   <body>
+    <div class="gtranslate_wrapper"></div>
+<script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","de","it","es","hi","mr","ur"],"wrapper_selector":".gtranslate_wrapper"}</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
     <div class="container-fluid sticky-top bg-dark shadow-sm">
       <div class="container">
         <nav class="navbar navbar-expand-lg bg-dark py-3 py-lg-0">
@@ -101,9 +104,9 @@
           ></button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-              <a href="about.html" class="nav-item nav-link">About</a>
-              <a href="service.html" class="nav-item nav-link">Service</a>
-              <a href="contact.html" class="nav-item nav-link">Contact</a>
+              <a href="about.ejs" class="nav-item nav-link">About</a>
+              <a href="service.ejs" class="nav-item nav-link">Service</a>
+              <a href="contact.ejs" class="nav-item nav-link">Contact</a>
             </div>
           </div>
         </nav>
@@ -150,11 +153,7 @@
                 </div>
 
                 <div class="option_field">
-                  <span class="checkbox">
-                    <input type="checkbox" id="check" />
-                    <label for="check" style="color: aqua">Remember Me</label>
-                  </span>
-                  <a href="#" class="forgot_pw">Forgot Password?</a>
+                  <p style="font-style:italic;">We Use Cookies</p>
                 </div>
 
                 <button class="button">Login Now</button>

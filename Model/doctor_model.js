@@ -86,6 +86,10 @@ const userSchema = new mongoose.Schema(
         qrcode: {
             type: String,
             required: false
+        },
+        degree_certificate_id:{
+            type: String,
+            required: true
         }
     },
     { timestamps: true }
