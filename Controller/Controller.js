@@ -315,10 +315,19 @@ const search_doctor = async (req, res) => {
 }
 
 const doctor_status = async (req, res) => {
-    const { department } = req.body
-    doctor_model.find({ department: department }).then((items) => {
+    const { department,phone_number } = req.body
+    if(phone_number == ""){
+        doctor_model.find({ department: department }).then((items) => {
+            res.render("doctor_status", { "items": items })
+        })
+            .catch((err) => {
+                console.error('Error:', err);
+                // Handle the error here
+            }) 
+    }
+    doctor_model.find({ department: department ,contact_number:Number(phone_number)}).then((items) => {
         console.log('Items:', items);
-        res.render("doctor_status", { "items": items })
+        res.render("doctor_status", { items })
     })
         .catch((err) => {
             console.error('Error:', err);
@@ -327,7 +336,6 @@ const doctor_status = async (req, res) => {
 }
 const doctors = async (req, res) => {
     const id = req.params
-    console.log(id)
     doctor_model.findOne({ _id: id.id }).then((items) => {
         if(items == null){
             res.send("No such doctor")
@@ -343,6 +351,26 @@ const doctors = async (req, res) => {
         })
 }
 
+const contact = async(req,res)=>{
+    res.render("contact")
+}
+
+const counsellor_status = async(req,res)=>{
+    counsellor_model.find().then((items) => {
+        if(items == null){
+            res.send("No such doctor")
+        }
+        else{
+            console.log(items)
+            res.render("counsellor_status",{"items":items})
+        }
+    })
+        .catch((err) => {
+            console.error('Error:', err);
+            // Handle the error here
+        })
+}
+
 module.exports = {
-    SignUpUser, SignUpDoctor, SignUp, UserDetails, DoctorDetails, CenterDetails, SignUpCenter, CounsellorDetails, SignUpCounsellor, Login, search_doctor, doctor_status, doctors
+    SignUpUser, SignUpDoctor, SignUp, UserDetails, DoctorDetails, CenterDetails, SignUpCenter, CounsellorDetails, SignUpCounsellor, Login, search_doctor, doctor_status, doctors,contact,counsellor_status
 }
