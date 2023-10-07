@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthWell Login Form</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <title>SignUp Page</title>
+    <link rel="stylesheet" type="text/css" href="../static/signup.css" />
     <!-- Unicons -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+  </head>
 
-<body>
+  <!-- <section class="home"> -->
+  <body>
     <!-- Signup Options -->
-            <div class="form signup_options">
-            <form action="/UserDetails" method="get">
-                <h2>SignUp</h2>
-                <button class="button1" type="submit">User Details</button>
-            </form>
-            <form action="/DoctorDetails" method="get">
-                <button class="button1" type="submit">Doctor Details</button>
-            </form>
-            <form action="/CenterDetails" method="get">
-                <button class="button1" type="submit">Center Details</button>
-            </form>
-            <form action="/CounsellorDetails" method="get">
-                <button class="button1" type="submit">Counsellor Details</button>
-            </form>
-        </div>
-        <script src="../static/script.js"></script>
+    <div class="form signup_options">
+      <div class="input_box">
+        <form action="/UserDetails" method="get">
+          <h2>SignUp</h2>
+          <button class="button1" type="submit">User Details</button>
+        </form>
+      </div>
 
-</body>
+      <div class="input_box">
+        <form action="/DoctorDetails" method="get">
+          <button class="button1" type="submit">Doctor Details</button>
+        </form>
+      </div>
 
+      <div class="input_box">
+        <form action="/CenterDetails" method="get">
+          <button class="button1" type="submit">Center Details</button>
+        </form>
+      </div>
+    </div>
+    <script src="../static/script.js"></script>
+  </body>
+  <!-- </section> -->
 </html>
